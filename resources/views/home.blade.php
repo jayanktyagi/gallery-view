@@ -38,7 +38,10 @@
         <div class="row" id="projectList">
             <!-- Project cards will be displayed here -->
             @foreach ($projects as $project)
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-3 project-card" data-technologies="{{ $project->Project_Technologies }}">
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-3 project-card"
+            data-technologies="{{ $project->Project_Technologies }}"
+            data-frontend-skills="{{ $project->Technical_Skillset_Frontend }}"
+            data-backend-skills="{{ $project->Technical_Skillset_Backend }}">
                     <div class="card" onclick="showModal('projectModal{{$project->id}}')">
                         <div class="card-header">
                             {{ $project->Project_Title }}
@@ -84,21 +87,38 @@
             myModal.show();
         }
 
-        // Function to perform project filtering
-        function filterProjects() {
-            var searchQuery = document.getElementById("searchInput").value.toLowerCase();
+            // Function to perform project filtering
+            function filterProjects() {
+        var searchQuery = document.getElementById("searchInput").value.toLowerCase();
 
-            // Loop through project cards and show/hide based on the search query
-            var projectCards = document.querySelectorAll(".project-card");
-            projectCards.forEach(function(card) {
-                var technologies = card.getAttribute("data-technologies").toLowerCase();
-                if (technologies.includes(searchQuery)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
+        // Split the search query into individual search terms
+        var searchTerms = searchQuery.split(/\s+/);
+
+        // Create an array of regex patterns for each search term
+        var regexPatterns = searchTerms.map(function(term) {
+            return new RegExp(term, "i"); // "i" flag for case-insensitive matching
+        });
+
+        // Loop through project cards and show/hide based on the search query
+        var projectCards = document.querySelectorAll(".project-card");
+        projectCards.forEach(function(card) {
+            var technologies = card.getAttribute("data-technologies").toLowerCase();
+            var frontendSkills = card.getAttribute("data-frontend-skills").toLowerCase();
+            var backendSkills = card.getAttribute("data-backend-skills").toLowerCase();
+            
+            // Use Array.prototype.every to check if all search terms match
+            var allTermsMatch = regexPatterns.every(function(pattern) {
+                return pattern.test(technologies) || pattern.test(frontendSkills) || pattern.test(backendSkills);
             });
-        }
+
+            if (allTermsMatch) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
 
         // Attach the filterProjects function to the input element's "input" event
         document.getElementById("searchInput").addEventListener("input", filterProjects);
