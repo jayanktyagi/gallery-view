@@ -5,6 +5,14 @@ This is a simple web application for showcasing your project portfolio. It allow
 <img width="960" alt="image" src="https://github.com/jayanktyagi/gallery-view/assets/87943225/963e8cb5-95cf-4b0d-b0e9-d01082cd566f">
 
 
+## Project Hosting
+
+This project is hosted and accessible online. You can view it by following this link:
+
+[Gallery Project](http://gallery-project-jt.free.nf/)
+
+Feel free to explore and interact with the live version of the project!
+
 ## Features
 
 - Display a list of projects with details.
