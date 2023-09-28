@@ -26,7 +26,7 @@ This is a simple web application for showcasing your project portfolio. It allow
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/project-portfolio.git
+   git clone https://github.com/jayanktyagi/gallery-view.git
 
 ## Setup
 
