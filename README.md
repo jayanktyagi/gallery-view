@@ -11,7 +11,6 @@ This is a simple web application for showcasing your project portfolio. It allow
 - View project details in a modal window.
 - Search for projects by project technologies.
 - Responsive design for various screen sizes.
-- Pastel color scheme for a visually pleasing experience.
 - Truncate long project technology descriptions with ellipsis.
 
 ## Technologies Used
